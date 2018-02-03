@@ -27,7 +27,7 @@ export default class Main extends Component {
       );
     } else {
       return (
-        <Image source={this.state.imageSource} style={{width: 300, height:300}} />
+        <Image source={this.state.imageSource} style={{width: 240, height:300}} />
       )
     }
   }
@@ -61,7 +61,7 @@ export default class Main extends Component {
   }
 
   async uploadImage(url) {
-    let data = await uploadImg(url);
+    let data = await uploadImg(url);  
     console.log('data = ' + data);
   }
 
@@ -74,20 +74,18 @@ export default class Main extends Component {
           <Text>Upload your profile.</Text>
         </View>
         <TouchableOpacity
-          style={{borderWidth: 1, borderColor: '#93cddd', width: 300, height: 300, alignItems: 'center', justifyContent: 'center'}}
+          style={{borderWidth: 1, borderColor: '#93cddd', width: 240, height: 300, alignItems: 'center', justifyContent: 'center'}}
           onPress={this.chooseImage.bind(this)}
           >
           { this.renderImage() }
         </TouchableOpacity>
         <TouchableOpacity
           style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}
-          >
+          onPress={()=>navigate('Register2', {
+            imageSource: this.state.imageSource,
+            base64Image: this.state.base64Image
+          })} >
           <Text>Next</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center', backgroundColor: 'blue'}}
-          onPress={()=>this.uploadImage(this.state.base64Image)}>
-          <Text>UPLOAD</Text>
         </TouchableOpacity>
         <View style={{backgroundColor: '#93cddd', width: '100%', height: 50, alignSelf: 'flex-end'}} />
       </View>
