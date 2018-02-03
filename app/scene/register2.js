@@ -56,7 +56,7 @@ export default class Main extends Component {
           value={this.state.name} />
         <TextInput
           placeholder="Password"
-          password
+          secureTextEntry
           underlineColorAndroid="transparent"
           style={{width: 220, backgroundColor: '#93cddd'}} 
           onChangeText={(text) => this.setState({pwd: text})}

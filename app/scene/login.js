@@ -30,6 +30,8 @@ export default class Main extends Component {
             <TextInput
               placeholder="0912345678"
               style={{width: 220, marginRight: 20}}
+              onChangeText={(text) => this.setState({phone: text})}
+              value={this.state.phone}
             />
           </View>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -38,7 +40,10 @@ export default class Main extends Component {
             </View>
             <TextInput
               placeholder="password"
+              secureTextEntry
               style={{width: 220, marginRight: 20}}
+              onChangeText={(text) => this.setState({pwd: text})}
+              value={this.state.pwd}
             />
           </View>
         </View>
