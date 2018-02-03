@@ -10,8 +10,8 @@ export default class Main extends Component {
       base64Image: this.props.navigation.state.params.base64Image,
       name: '',
       pwd: '',
-      nation: 'taiwan',
-      sex: 'boy',
+      nation: 'Taiwan',
+      sex: 'M',
       birthday: '2018-02-04',
       chooseDay: new Date(2018, 2, 4)
     }
@@ -71,7 +71,7 @@ export default class Main extends Component {
         <View style={{flexDirection: 'row'}}>
           <TouchableOpacity
             style={{width: 45, height: 30, backgroundColor: '#93cddd', justifyContent: 'center', alignItems: 'center'}}
-            onPress={()=>this.setState({sex:(this.state.sex == 'boy' ? 'girl' : 'boy')})} >
+            onPress={()=>this.setState({sex:(this.state.sex == 'M' ? 'F' : 'M')})} >
             <Text>{this.state.sex}</Text>
           </TouchableOpacity>
           <TouchableOpacity
