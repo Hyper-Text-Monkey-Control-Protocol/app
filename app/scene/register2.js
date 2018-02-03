@@ -80,7 +80,17 @@ export default class Main extends Component {
             <Text>{this.state.birthday}</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}>
+        <TouchableOpacity
+          style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}
+          onPress={()=>navigate('Register3', {
+            imageSource: this.state.imageSource,
+            base64Image: this.state.base64Image,
+            name: this.state.name,
+            pwd: this.state.pwd,
+            nation: this.state.nation,
+            sex: this.state.sex,
+            birthday: this.state.birthday
+          })} >
           <Text>Next</Text>
         </TouchableOpacity>
         <View style={{height: 50}} />
