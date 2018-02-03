@@ -28,11 +28,12 @@ export default class Main extends Component {
     this.userStatusText();
   }
 
-  renderOkBtn(text) {
+  renderOkBtn(text, func) {
     console.log(text)
     return (
       <TouchableOpacity
-        style={{backgroundColor: '#93cddd', width: 100, height: 100, justifyContent: 'center', alignItems: 'center'}} >
+        style={{backgroundColor: '#93cddd', width: 100, height: 100, justifyContent: 'center', alignItems: 'center'}}
+        onPress={func} >
         <Text style={styles.textMid}>{text}</Text>
       </TouchableOpacity>
     );
@@ -45,6 +46,26 @@ export default class Main extends Component {
         <Text style={styles.textMid}>{text}</Text>
       </TouchableHighlight>
     );
+  }
+
+  goProfile() {
+    const { navigate } = this.props.navigation;
+    navigate('Profile');
+  }
+
+  goQrcode() {
+    const { navigate } = this.props.navigation;
+    navigate('Qrcode');
+  }
+
+  goSailing() {
+    const { navigate } = this.props.navigation;
+    navigate('Sailing');
+  }
+
+  goStatistic() {
+    const { navigate } = this.props.navigation;
+    navigate('Statistics');
   }
 
   render() {
@@ -61,12 +82,12 @@ export default class Main extends Component {
           <Text style={{fontSize: 50, color: this.state.userStatus == "Approved" ? 'green' : 'red'}}>{this.state.userStatus}</Text>
         </View>
         <View style={{width: 250, height: 150, flexDirection: 'row', flexWrap: 'wrap' ,justifyContent: 'space-between', alignItems: 'center'}}>
-          { this.state.userStatus == "Approved" ? this.renderOkBtn("Profile") : this.renderFailBtn("Profile") }
-          { this.state.userStatus == "Approved" ? this.renderOkBtn("QR CODE") : this.renderFailBtn("QR CODE") }
+          { this.state.userStatus == "Approved" ? this.renderOkBtn("Profile", this.goProfile.bind(this)) : this.renderFailBtn("Profile") }
+          { this.state.userStatus == "Approved" ? this.renderOkBtn("QR CODE", this.goQrcode.bind(this)) : this.renderFailBtn("QR CODE") }
         </View>
         <View style={{width: 250, height: 150, flexDirection: 'row', flexWrap: 'wrap' ,justifyContent: 'space-between', alignItems: 'center'}}>
-          { this.renderOkBtn('Sailing') }
-          { this.renderOkBtn('Statistics') }
+          { this.renderOkBtn('Sailing', this.goSailing.bind(this)) }
+          { this.renderOkBtn('Statistics', this.goStatistic.bind(this)) }
         </View>
         
       </View>
