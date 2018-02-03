@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
-import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Image} from 'react-native';
+import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Image, Alert} from 'react-native';
+import {sendVerCode, register} from '../network/network';
 
 export default class Main extends Component {
 
@@ -14,13 +15,92 @@ export default class Main extends Component {
       sex: this.props.navigation.state.params.sex,
       birthday: this.props.navigation.state.params.birthday,
       phone: null,
-      verCode: ''
+      verCode: '',
+      sendVerCode: -1
     }
   }
 
   static navigationOptions = {
     header: null,
   };
+
+  async wantToRegister() {
+    const { navigate } = this.props.navigation;
+    var res = await register(this.state.phone, this.state.verCode, this.state.name, this.state.pwd, this.state.birthday, this.state.nation, '', this.state.base64Image);
+    console.log(res.status);
+    if (res.status == 1) {
+      Alert.alert(
+        'Registration complete',
+        '',
+        [
+          {text: 'OK', onPress: () => navigate('Login')},
+        ]
+      );
+    } else if (res.status == 0) {
+      Alert.alert(
+        'Register faild',
+        'Missing field(s)',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]
+      );
+    } else if (res.status == 2) {
+      Alert.alert(
+        'Register faild',
+        'Account already exist',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]
+      );
+    } else if (res.status == 3) {
+      Alert.alert(
+        'Register faild',
+        'Phone verification code is expire or non-exist',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]
+      );
+    } else if (res.status == 4) {
+      Alert.alert(
+        'Register faild',
+        'Wrong phone verification code',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]
+      );
+    } else {
+      Alert.alert(
+        'Register faild',
+        'I don not know why you register faild',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]
+      );
+    }
+  }
+
+  async sendPhoneCode() {
+    let res = await sendVerCode(this.state.phone);
+    console.log('res = ' + res);
+    this.setState({sendVerCode: res.status});
+    if (res.status == 0) {
+      Alert.alert(
+        'Send verification code success',
+        'enter verification code and press done',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]
+      );
+    } else {
+      Alert.alert(
+        'Send verification code faild',
+        '',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]
+      );
+    }
+  }
 
   render() {
     const { navigate } = this.props.navigation;
@@ -50,17 +130,21 @@ export default class Main extends Component {
             onChangeText={(text) => this.setState({phone: text})}
             value={this.state.phone} />
           <TouchableOpacity
-            style={{width: 50, height: 50, justifyContent: 'center', alignItems: 'center'}} >
+            style={{width: 50, height: 50, justifyContent: 'center', alignItems: 'center'}}
+            onPress={this.sendPhoneCode.bind(this)} >
             <Text>Send</Text>
           </TouchableOpacity>
         </View>
         <TextInput
           placeholder="Verification code"
           underlineColorAndroid="transparent"
+          editable={this.state.sendVerCode == 0}
           style={{width: 270, backgroundColor: '#93cddd'}}
-          onChangeText={(text) => this.setState({nation: text})}
+          onChangeText={(text) => this.setState({verCode: text})}
           value={this.state.verCode} />
-        <TouchableOpacity style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}>
+        <TouchableOpacity
+          style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}
+          onPress={this.wantToRegister.bind(this)} >
           <Text>Done</Text>
         </TouchableOpacity>
         <View style={{height: 50}} />
