@@ -15,12 +15,12 @@ import Sailing from './app/scene/sailing';
 import Statistic from './app/scene/statistics';
 
 const App = StackNavigator({
-	Main: { screen: Main },
+	Profile: { screen: Profile },
 	Login: { screen: Login },
 	Register1: { screen: Register1 },
 	Register2: { screen: Register2 },
 	Register3: { screen: Register3 },
-	Profile: { screen: Profile },
+	Main: { screen: Main },
 	Qrcode: { screen: Qrcode },
 	Sailing: { screen: Sailing },
 	Statistic: { screen: Statistic }

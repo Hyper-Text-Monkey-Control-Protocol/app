@@ -2,6 +2,17 @@ import React, { Component} from 'react';
 import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, TouchableHighlight} from 'react-native';
 import {userStatus} from '../network/network';
 
+const hotcode = {
+  ciNum: '12345687',
+  name: 'TestName',
+  sex: 'M',
+  birth: '2012-11-16',
+  occupation: 'FACTORY',
+  regNo: '12345',
+  creatDate: '2017-08-03',
+  exprieDate: '2021-08-02'
+};
+
 export default class Main extends Component {
 
   constructor(props) {
@@ -51,24 +62,36 @@ export default class Main extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <View style={{position: 'absolute', left: 10, top: 10}}>
-          <Text style={{fontSize: 25}}>Fishackthon</Text>
+        <View>
+          <View style={{width: 220, height: 280, backgroundColor: 'red'}}>
+          </View>
+          <Text>CI No.{hotcode.ciNum}</Text>
         </View>
-        <View style={{position: 'absolute', right: 10, top: 25}}>
-          <Text style={{fontSize: 10}}>Hyper Text Monkey Control Protocol</Text>
+        <View style={{marginLeft: 20, top: -10}}>
+          <Text style={styles.text}>Name</Text>
+          <Text style={styles.text2}>{hotcode.name}</Text>
+          <Text style={styles.text}>Sex</Text>
+          <Text style={styles.text2}>{hotcode.sex}</Text>
+          <Text style={styles.text}>Date of Birth</Text>
+          <Text style={styles.text2}>{hotcode.birth}</Text>
+          <Text style={styles.text}>Father Name</Text>
+          <Text style={styles.text2}>{'NO DATA'}</Text>
+          <Text style={styles.text}>Occupation</Text>
+          <Text style={styles.text2}>{hotcode.occupation}</Text>
         </View>
-        <View style={{margin: 40}}>
-          <Text style={{fontSize: 50, color: this.state.userStatus == "Approved" ? 'green' : 'red'}}>{this.state.userStatus}</Text>
+        <View style={{marginLeft: 40}}>
+          <Text style={styles.text}>Reg No.</Text>
+          <Text style={styles.text2}>{hotcode.regNo}</Text>
+          <Text style={styles.text}>Date of Issue</Text>
+          <Text style={styles.text2}>{hotcode.creatDate}</Text>
+          <Text style={styles.text}>Date of Expiry</Text>
+          <Text style={styles.text2}>{hotcode.exprieDate}</Text>
         </View>
-        <View style={{width: 250, height: 150, flexDirection: 'row', flexWrap: 'wrap' ,justifyContent: 'space-between', alignItems: 'center'}}>
-          { this.state.userStatus == "Approved" ? this.renderOkBtn("Profile") : this.renderFailBtn("Profile") }
-          { this.state.userStatus == "Approved" ? this.renderOkBtn("QR CODE") : this.renderFailBtn("QR CODE") }
-        </View>
-        <View style={{width: 250, height: 150, flexDirection: 'row', flexWrap: 'wrap' ,justifyContent: 'space-between', alignItems: 'center'}}>
-          { this.renderOkBtn('Sailing') }
-          { this.renderOkBtn('Statistics') }
-        </View>
-        
+        <TouchableOpacity
+          style={{position: 'absolute', right: 10, top: 0}}
+          onPress={()=>navigate('Main')} >
+          <Text style={{fontSize: 40, color: 'red'}}>Back</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -77,11 +100,18 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
-  textMid: {
-    fontSize: 20
+  text: {
+    fontSize: 18,
+    color: 'black'
+  },
+  text2: {
+    fontSize: 18,
+    color: 'gray',
+    marginBottom: 8
   }
 });

@@ -88,8 +88,7 @@ export default class Main extends Component {
         <View style={{width: 250, height: 150, flexDirection: 'row', flexWrap: 'wrap' ,justifyContent: 'space-between', alignItems: 'center'}}>
           { this.renderOkBtn('Sailing', this.goSailing.bind(this)) }
           { this.renderOkBtn('Statistics', this.goStatistic.bind(this)) }
-        </View>
-        
+        </View>        
       </View>
     );
   }
