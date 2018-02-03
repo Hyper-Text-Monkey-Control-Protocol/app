@@ -40,3 +40,11 @@ export async function register(phone, phone_code, name, password, birth, nationa
 	var response = await fetch(req);
 	return response.json();
 }
+
+export async function login() {
+	return true;
+}
+
+export async function userStatus() {
+	return {status: 200};
+}

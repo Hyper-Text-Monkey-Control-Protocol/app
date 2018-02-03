@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
-import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
+import {login} from '../network/network';
 
 export default class Main extends Component {
 
@@ -14,6 +15,22 @@ export default class Main extends Component {
   static navigationOptions = {
     header: null,
   };
+
+  async wantToLogin() {
+    var res = await login();
+    if (res) {
+      const { navigate } = this.props.navigation;
+      navigate('Main');
+    } else {
+      Alert.alert(
+        'Login faild',
+        'phone number or password not correct',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ]
+      );
+    }
+  }
 
   render() {
     const { navigate } = this.props.navigation;
@@ -54,7 +71,10 @@ export default class Main extends Component {
           > 
             <Text>Register</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}>
+          <TouchableOpacity
+            style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}
+            onPress={this.wantToLogin.bind(this)}
+          >
             <Text>Login</Text>
           </TouchableOpacity>
         </View>
