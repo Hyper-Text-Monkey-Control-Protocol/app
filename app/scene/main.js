@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 export default class Main extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +11,12 @@ export default class Main extends Component {
     }
   }
 
+  static navigationOptions = {
+    header: null,
+  };
+
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <KeyboardAvoidingView
         style={styles.container}
@@ -37,7 +43,10 @@ export default class Main extends Component {
           </View>
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-          <TouchableOpacity style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}>
+          <TouchableOpacity
+            style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}
+            onPress={()=>navigate('Register1', {name: 'register1'})}
+          > 
             <Text>Register</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}>

@@ -53,3 +53,4 @@ buck-out/
 */fastlane/screenshots
 
 node_modules/
+yarn.lock
