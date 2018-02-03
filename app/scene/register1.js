@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Image } from 'react-native';
+import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Image, PermissionsAndroid } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
 export default class Main extends Component {
@@ -7,7 +7,6 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isChoose: false,
       imageSource: ''
     }
   }
@@ -17,7 +16,7 @@ export default class Main extends Component {
   };
 
   renderImage() {
-    if (!this.state.isChoose) {
+    if (this.state.imageSource == '') {
       return (
         <View>
           <Text>+</Text>
@@ -26,12 +25,12 @@ export default class Main extends Component {
       );
     } else {
       return (
-        <Image style={{width: 300, height:300}} />
+        <Image source={this.state.imageSource} style={{width: 300, height:300}} />
       )
     }
   }
 
-  chooseImage() {
+  async chooseImage() {
     console.log('choose image!');
     var options = {
       title: 'Choose your photo',
@@ -43,7 +42,6 @@ export default class Main extends Component {
 
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
-
       if (response.didCancel) {
         console.log('User cancelled image picker');
       }
@@ -52,10 +50,6 @@ export default class Main extends Component {
       }
       else {
         let source = { uri: response.uri };
-
-        // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
         this.setState({
           imageSource: source
         });
@@ -73,7 +67,7 @@ export default class Main extends Component {
         </View>
         <TouchableOpacity
           style={{borderWidth: 1, borderColor: '#93cddd', width: 300, height: 300, alignItems: 'center', justifyContent: 'center'}}
-          onPress={this.chooseImage}
+          onPress={this.chooseImage.bind(this)}
           >
           { this.renderImage() }
         </TouchableOpacity>

@@ -5,6 +5,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!--獲取讀寫外置存儲權限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--獲取相機權限-->
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <uses-sdk
         android:minSdkVersion="16"
