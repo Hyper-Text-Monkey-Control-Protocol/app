@@ -1,13 +1,15 @@
 import React, { Component} from 'react';
 import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Image, PermissionsAndroid } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import {uploadImg} from '../network/network';
 
 export default class Main extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      imageSource: ''
+      imageSource: '',
+      base64Image: ''
     }
   }
 
@@ -51,10 +53,16 @@ export default class Main extends Component {
       else {
         let source = { uri: response.uri };
         this.setState({
-          imageSource: source
+          imageSource: source,
+          base64Image: response.data
         });
       }
     });
+  }
+
+  async uploadImage(url) {
+    let data = await uploadImg(url);
+    console.log('data = ' + data);
   }
 
   render() {
@@ -71,8 +79,15 @@ export default class Main extends Component {
           >
           { this.renderImage() }
         </TouchableOpacity>
-        <TouchableOpacity style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}>
+        <TouchableOpacity
+          style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center'}}
+          >
           <Text>Next</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{width: 80, height: 50, alignItems: 'center', justifyContent: 'center', backgroundColor: 'blue'}}
+          onPress={()=>this.uploadImage(this.state.base64Image)}>
+          <Text>UPLOAD</Text>
         </TouchableOpacity>
         <View style={{backgroundColor: '#93cddd', width: '100%', height: 50, alignSelf: 'flex-end'}} />
       </View>
