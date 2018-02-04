@@ -62,8 +62,9 @@ export default class Main extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
+        <Text style={{position: 'absolute', top: 150, fontSize: 18, color: 'red'}}>Overseas Worker Indentification Card</Text>
         <View>
-          <View style={{width: 220, height: 280, backgroundColor: 'red'}}>
+          <View style={{width: 156, height: 195, backgroundColor: 'red'}}>
           </View>
           <Text>CI No.{hotcode.ciNum}</Text>
         </View>
@@ -79,7 +80,7 @@ export default class Main extends Component {
           <Text style={styles.text}>Occupation</Text>
           <Text style={styles.text2}>{hotcode.occupation}</Text>
         </View>
-        <View style={{marginLeft: 40}}>
+        <View style={{marginLeft: 20}}>
           <Text style={styles.text}>Reg No.</Text>
           <Text style={styles.text2}>{hotcode.regNo}</Text>
           <Text style={styles.text}>Date of Issue</Text>
@@ -88,9 +89,9 @@ export default class Main extends Component {
           <Text style={styles.text2}>{hotcode.exprieDate}</Text>
         </View>
         <TouchableOpacity
-          style={{position: 'absolute', right: 10, top: 0}}
+          style={{position: 'absolute', bottom: 40}}
           onPress={()=>navigate('Main')} >
-          <Text style={{fontSize: 40, color: 'red'}}>Back</Text>
+          <Text style={{fontSize: 40, color: 'gray'}}>Back</Text>
         </TouchableOpacity>
       </View>
     );
@@ -106,12 +107,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   text: {
-    fontSize: 18,
+    fontSize: 12,
     color: 'black'
   },
   text2: {
-    fontSize: 18,
+    fontSize: 12,
     color: 'gray',
-    marginBottom: 8
+    marginBottom: 2
   }
 });
