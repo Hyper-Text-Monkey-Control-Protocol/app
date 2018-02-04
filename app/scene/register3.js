@@ -26,9 +26,9 @@ export default class Main extends Component {
 
   async wantToRegister() {
     const { navigate } = this.props.navigation;
-    var res = await register(this.state.phone, this.state.verCode, this.state.name, this.state.pwd, this.state.birthday, this.state.nation, '', this.state.base64Image);
+    var res = await register(this.state.phone, this.state.verCode, this.state.name, this.state.pwd, this.state.birthday, this.state.nation, '', this.state.base64Image, this.state.sex);
     console.log(res.status);
-    if (res.status == 1) {
+    if (res.status == 0) {
       Alert.alert(
         'Registration complete',
         '',
@@ -36,7 +36,7 @@ export default class Main extends Component {
           {text: 'OK', onPress: () => navigate('Login')},
         ]
       );
-    } else if (res.status == 0) {
+    } else if (res.status == 1) {
       Alert.alert(
         'Register faild',
         'Missing field(s)',
