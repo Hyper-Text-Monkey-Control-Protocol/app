@@ -1,6 +1,5 @@
 import React, { Component} from 'react';
 import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, TouchableHighlight, Image} from 'react-native';
-import {userStatus} from '../network/network';
 
 export default class Main extends Component {
 

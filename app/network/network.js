@@ -54,6 +54,10 @@ export async function login(phone, password) {
 	return response.json();
 }
 
-export async function userStatus() {
-	return {status: 200};
+export async function sendData(token, status, time) {
+
+}
+
+export async function getData() {
+
 }

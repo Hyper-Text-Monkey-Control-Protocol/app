@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, TouchableHighlight} from 'react-native';
+import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, TouchableHighlight, Image} from 'react-native';
 
 const hotcode = {
   ciNum: '12345687',
@@ -28,19 +28,21 @@ export default class Main extends Component {
       <View style={styles.container}>
         <Text style={{position: 'absolute', top: 150, fontSize: 18, color: 'red'}}>Overseas Worker Indentification Card</Text>
         <View>
-          <View style={{width: 156, height: 195, backgroundColor: 'red'}}>
+          <View style={{}}>
+            <Image source={{uri: 'data:image/jpg;base64,'+this.props.navigation.state.params.profile.photo}}
+              style={{width: 156, height: 195}} />
           </View>
-          <Text>CI No.{hotcode.ciNum}</Text>
+          <Text>CI No.{this.props.navigation.state.params.profile.sid}</Text>
         </View>
         <View style={{marginLeft: 20, top: -10}}>
           <Text style={styles.text}>Name</Text>
-          <Text style={styles.text2}>{hotcode.name}</Text>
+          <Text style={styles.text2}>{this.props.navigation.state.params.profile.name}</Text>
           <Text style={styles.text}>Sex</Text>
-          <Text style={styles.text2}>{hotcode.sex}</Text>
+          <Text style={styles.text2}>{this.props.navigation.state.params.profile.sex}</Text>
           <Text style={styles.text}>Date of Birth</Text>
-          <Text style={styles.text2}>{hotcode.birth}</Text>
+          <Text style={styles.text2}>{this.props.navigation.state.params.profile.birth}</Text>
           <Text style={styles.text}>Father Name</Text>
-          <Text style={styles.text2}>{'NO DATA'}</Text>
+          <Text style={styles.text2}>{'Yee'}</Text>
           <Text style={styles.text}>Occupation</Text>
           <Text style={styles.text2}>{hotcode.occupation}</Text>
         </View>
