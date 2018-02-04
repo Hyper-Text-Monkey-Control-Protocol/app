@@ -101,7 +101,7 @@ export default class Main extends Component {
         </View>
         <TouchableOpacity
           style={{}}
-          onPress={()=>navigate('Main')} >
+          onPress={()=>navigate('Main', {profile: this.props.navigation.state.params.profile})} >
           <Text style={{fontSize: 40, color: 'gray'}}>Back</Text>
         </TouchableOpacity>
       </View>

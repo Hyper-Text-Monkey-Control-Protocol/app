@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Alert } from 'react-native';
+import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Alert, Image } from 'react-native';
 import {login} from '../network/network';
 
 export default class Main extends Component {
@@ -17,10 +17,12 @@ export default class Main extends Component {
   };
 
   async wantToLogin() {
-    var res = await login();
-    if (res) {
+    console.log('send pwd: ' + this.state.password)
+    var res = await login(this.state.phone, this.state.password);
+    console.log('res = ' + JSON.stringify(res));
+    if (res.status == 0) {
       const { navigate } = this.props.navigation;
-      navigate('Main');
+      navigate('Main', {profile: res.res});
     } else {
       Alert.alert(
         'Login faild',
@@ -38,7 +40,9 @@ export default class Main extends Component {
       <KeyboardAvoidingView
         style={styles.container}
         behavior="padding" >
-        <View style={styles.logo} />
+        <View style={styles.logo}>
+          <Image source={require('./logo.jpg')} style={{width: 214, height: 72}} />
+        </View>
         <View>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <View style={{width: 60, alignItems: 'center'}}>
@@ -59,8 +63,8 @@ export default class Main extends Component {
               placeholder="password"
               secureTextEntry
               style={{width: 220, marginRight: 20}}
-              onChangeText={(text) => this.setState({pwd: text})}
-              value={this.state.pwd}
+              onChangeText={(text) => this.setState({password: text})}
+              value={this.state.password}
             />
           </View>
         </View>
@@ -92,9 +96,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   logo: {
-    backgroundColor: 'red',
+    backgroundColor: 'transparent',
     height: 250,
     width: 300,
-    marginBottom: 50
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

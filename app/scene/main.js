@@ -16,8 +16,7 @@ export default class Main extends Component {
   };
 
   async userStatusText() {
-    var res = await userStatus();
-    if (res.status == 200) {
+    if (this.props.navigation.state.params.profile.enable == "1") {
       this.setState({userStatus: "Approved"});
     } else {
       this.setState({userStatus: "Pending"});
@@ -50,22 +49,22 @@ export default class Main extends Component {
 
   goProfile() {
     const { navigate } = this.props.navigation;
-    navigate('Profile');
+    navigate('Profile', {profile: this.props.navigation.state.params.profile});
   }
 
   goQrcode() {
     const { navigate } = this.props.navigation;
-    navigate('Qrcode');
+    navigate('Qrcode', {profile: this.props.navigation.state.params.profile});
   }
 
   goSailing() {
     const { navigate } = this.props.navigation;
-    navigate('Sailing');
+    navigate('Sailing', {profile: this.props.navigation.state.params.profile});
   }
 
   goStatistic() {
     const { navigate } = this.props.navigation;
-    navigate('Statistic');
+    navigate('Statistic', {profile: this.props.navigation.state.params.profile});
   }
 
   render() {

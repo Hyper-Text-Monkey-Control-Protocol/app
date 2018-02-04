@@ -81,7 +81,7 @@ export default class Main extends Component {
         {this.renderSecond(hotcode.record, over)}
         <TouchableOpacity
           style={{position: 'absolute', bottom: 40}}
-          onPress={()=>navigate('Main')} >
+          onPress={()=>navigate('Main', {profile: this.props.navigation.state.params.profile})} >
           <Text style={{fontSize: 40, color: 'gray'}}>Back</Text>
         </TouchableOpacity>
         <View style={{height: 40, width: '100%'}} />

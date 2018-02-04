@@ -23,7 +23,7 @@ export async function sendVerCode(phone) {
 	return response.json();
 }
 
-export async function register(phone, phone_code, name, password, birth, nationality, position, photo) {
+export async function register(phone, phone_code, name, password, birth, nationality, position, photo, sex) {
 	var req = new Request(host+'/register.php', {
 		method: 'POST',
 		body: JSON.stringify({
@@ -34,15 +34,24 @@ export async function register(phone, phone_code, name, password, birth, nationa
 			birth: birth,
 			nationality: nationality,
 			position: 'OAO',
-			photo: photo
+			photo: photo,
+			sex: sex
 		})
 	});
 	var response = await fetch(req);
 	return response.json();
 }
 
-export async function login() {
-	return true;
+export async function login(phone, password) {
+	var req = new Request(host+'/login.php', {
+		method: 'POST',
+		body: JSON.stringify({
+			phone: phone,
+			password: password
+		})
+	});
+	var response = await fetch(req);
+	return response.json();
 }
 
 export async function userStatus() {
