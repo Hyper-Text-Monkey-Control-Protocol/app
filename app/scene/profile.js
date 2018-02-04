@@ -1,6 +1,5 @@
 import React, { Component} from 'react';
 import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, TouchableHighlight} from 'react-native';
-import {userStatus} from '../network/network';
 
 const hotcode = {
   ciNum: '12345687',
@@ -17,46 +16,11 @@ export default class Main extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      userStatus: "Waiting for server"
-    }
   }
 
   static navigationOptions = {
     header: null,
   };
-
-  async userStatusText() {
-    var res = await userStatus();
-    if (res.status == 200) {
-      this.setState({userStatus: "Approved"});
-    } else {
-      this.setState({userStatus: "Pending"});
-    }
-  }
-
-  componentWillMount() {
-    this.userStatusText();
-  }
-
-  renderOkBtn(text) {
-    console.log(text)
-    return (
-      <TouchableOpacity
-        style={{backgroundColor: '#93cddd', width: 100, height: 100, justifyContent: 'center', alignItems: 'center'}} >
-        <Text style={styles.textMid}>{text}</Text>
-      </TouchableOpacity>
-    );
-  }
-
-  renderFailBtn(text) {
-    return (
-      <TouchableHighlight
-        style={{backgroundColor: 'gray', width: 100, height: 100, justifyContent: 'center', alignItems: 'center'}} >
-        <Text style={styles.textMid}>{text}</Text>
-      </TouchableHighlight>
-    );
-  }
 
   render() {
     const { navigate } = this.props.navigation;
