@@ -53,11 +53,3 @@ export async function login(phone, password) {
 	var response = await fetch(req);
 	return response.json();
 }
-
-export async function sendData(token, status, time) {
-
-}
-
-export async function getData() {
-
-}

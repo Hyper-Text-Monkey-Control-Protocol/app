@@ -5,7 +5,7 @@ var TimeOut = null;
 var showArr = [];
 
 const hotcode = {
-  sailingState: true,
+  sailingState: false,
   sailingTime: new Date('2018-02-04T00:52:29.408Z')
 };
 
@@ -38,7 +38,8 @@ export default class Main extends Component {
   };
 
   updateSailingState(sailing) {
-    this.setState({ sailing: sailing })
+    hotcode.sailingTime = new Date();
+    this.setState({ sailing: sailing, dateDiff: 0 })
   }
 
   changeSailingState(sailing=true) {
