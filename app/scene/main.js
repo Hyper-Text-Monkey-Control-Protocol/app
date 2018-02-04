@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, TouchableHighlight} from 'react-native';
+import { AppRegistry, Text, TextInput, StyleSheet, View, TouchableOpacity, TouchableHighlight, Image} from 'react-native';
 import {userStatus} from '../network/network';
 
 export default class Main extends Component {
@@ -73,7 +73,7 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         <View style={{position: 'absolute', left: 10, top: 10}}>
-          <Text style={{fontSize: 25}}>Fishackthon</Text>
+          <Image source={require('./logo.jpg')} style={{width:107 , height: 36}} />
         </View>
         <View style={{position: 'absolute', right: 10, top: 25}}>
           <Text style={{fontSize: 10}}>Hyper Text Monkey Control Protocol</Text>
