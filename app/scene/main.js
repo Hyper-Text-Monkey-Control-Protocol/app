@@ -66,6 +66,11 @@ export default class Main extends Component {
     navigate('Statistic', {profile: this.props.navigation.state.params.profile});
   }
 
+  logout() {
+    const { navigate } = this.props.navigation;
+    navigate('Login'); 
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -86,6 +91,9 @@ export default class Main extends Component {
         <View style={{width: 250, height: 150, flexDirection: 'row', flexWrap: 'wrap' ,justifyContent: 'space-between', alignItems: 'center'}}>
           { this.renderOkBtn('Sailing', this.goSailing.bind(this)) }
           { this.renderOkBtn('Statistics', this.goStatistic.bind(this)) }
+        </View>
+        <View style={{width: 250, height: 150, flexDirection: 'row', flexWrap: 'wrap' ,justifyContent: 'center', alignItems: 'center'}}>
+          { this.renderOkBtn('Logout', this.logout.bind(this)) }
         </View>        
       </View>
     );

@@ -51,10 +51,18 @@ export default class Main extends Component {
     var res = [];
     for(var i=0; i<arr.length; i++) {
       var ct = this.countTime(arr[i][0], arr[i][1]);
-      res.push(<Text>{arr[i][0].toISOString().slice(0, 10) + ' / ' + ct[0] + 'D' + ct[1] + 'H' + ct[2] + 'M' + ct[3] + 'S'}</Text>);
+      res.push(<Text key={this.rdKey}>{arr[i][0].toISOString().slice(0, 10) + ' / ' + ct[0] + 'D' + ct[1] + 'H' + ct[2] + 'M' + ct[3] + 'S'}</Text>);
       if (ct[1]>=6 || ct[0]>0) {
         over.push(i);
       }
+    }
+    return res;
+  }
+
+  rdKey() {
+    var res = 1;
+    for(var i=0; i<10; i++) {
+      res += Math.random() * 10000;
     }
     return res;
   }
@@ -63,7 +71,7 @@ export default class Main extends Component {
     var res = []
     for(var i=0; i<arr2.length; i++) {
       var ct = this.countTime(arr[arr2[i]][0], arr[arr2[i]][1]);
-      res.push(<Text>{arr[arr2[i]][0].toISOString().slice(0, 10) + ' / ' + ct[0] + 'D' + ct[1] + 'H' + ct[2] + 'M' + ct[3] + 'S'}</Text>);
+      res.push(<Text key={this.rdKey}>{arr[arr2[i]][0].toISOString().slice(0, 10) + ' / ' + ct[0] + 'D' + ct[1] + 'H' + ct[2] + 'M' + ct[3] + 'S'}</Text>);
     }
     return res;
   }
