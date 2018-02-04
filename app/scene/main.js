@@ -65,7 +65,7 @@ export default class Main extends Component {
 
   goStatistic() {
     const { navigate } = this.props.navigation;
-    navigate('Statistics');
+    navigate('Statistic');
   }
 
   render() {
